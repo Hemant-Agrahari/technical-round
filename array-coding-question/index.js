@@ -121,5 +121,50 @@ const eventOdd = (arr) => {
 console.log(eventOdd([2, 3, 4, 5, 6, 7, 8, 9, 10]));
 
 /**
- *
+ *write a program for findmax occurence of element name in number of time
  */
+function findMaxOccurrence(arr) {
+  // Initialize an empty object to store the frequency of each element
+  const frequency = {};
+  let maxCount = 0; // Variable to keep track of the highest occurrence count
+  let mostFrequentElement = null; // Variable to store the most frequent element
+
+  // Loop through each element in the array
+  for (const element of arr) {
+    // Increment the count of the element in the frequency object
+    frequency[element] = (frequency[element] || 0) + 1;
+
+    // Check if the current element's count is greater than maxCount
+    if (frequency[element] > maxCount) {
+      maxCount = frequency[element]; // Update maxCount with the new highest count
+      mostFrequentElement = element; // Update mostFrequentElement with the current element
+    }
+  }
+
+  // Return an object containing the most frequent element and its count
+  return { element: mostFrequentElement, count: maxCount };
+}
+
+// Example usage:
+const names = ["Alice", "Bob", "Alice", "John", "Alice", "Bob", "Bob"];
+const result = findMaxOccurrence(names);
+console.log(`Most frequent element: ${result.element}, Count: ${result.count}`);
+
+// Output: Most frequent element: Alice
+
+/**Count frequncy of all element */
+function countFrequency(arr) {
+  return arr.reduce((acc, item) => {
+    // If the item already exists in the accumulator, increment its count
+    // Otherwise, initialize it to 0 and then add 1
+    acc[item] = (acc[item] || 0) + 1;
+    return acc; // Return the updated accumulator object
+  }, {}); // Start with an empty object as the initial accumulator
+}
+
+// Example usage:
+console.log(
+  countFrequency(["apple", "banana", "apple", "orange", "banana", "apple"])
+);
+
+// Output: { apple: 3, banana: 2, orange: 1 }
